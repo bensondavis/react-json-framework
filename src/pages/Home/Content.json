@@ -1,0 +1,74 @@
+{
+  "screen": [
+    {
+      "card": {
+        "title": "Welcome to home page",
+        "layout": "column",
+        "content": [
+          {
+            "stack": {
+              "title": "",
+              "layout": "column",
+              "content": [
+                {
+                  "textField": {
+                    "id": "name",
+                    "title": "What is your name?",
+                    "placeholder": "name",
+                    "layout": "row"
+                  }
+                },
+                {
+                  "textField": {
+                    "id": "age",
+                    "title": "What is your age?",
+                    "placeholder": "age",
+                    "layout": "row"
+                  }
+                },
+                {
+                  "button": {
+                    "position": "center",
+                    "title": "Submit",
+                    "actionUrl": "/api/submit"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "card": {
+        "title": "your contact details",
+        "layout": "row",
+        "content": [
+          {
+            "textField": {
+              "id": "phn",
+              "title": "What is your no?",
+              "placeholder": "phn",
+              "layout": "row"
+            }
+          },
+          {
+            "textField": {
+              "id": "email",
+              "title": "What is your email?",
+              "placeholder": "email",
+              "layout": "row"
+            }
+          },
+          {
+            "button": {
+              "position": "center",
+              "title": "Submit",
+              "actionUrl": "/api/contact/submit"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

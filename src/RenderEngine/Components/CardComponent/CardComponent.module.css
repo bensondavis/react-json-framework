@@ -1,0 +1,19 @@
+.card {
+    /*padding: 16px;*/
+}
+
+.title {
+    font-weight: bold;
+}
+
+.card-row {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+}
+
+.card-col {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}

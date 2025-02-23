@@ -1,0 +1,7 @@
+.layout-container {
+    width: calc(100vw - 10px);
+}
+
+.main {
+    width: 100%;
+}
