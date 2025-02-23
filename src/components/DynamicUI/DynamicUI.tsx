@@ -1,10 +1,13 @@
 import React, {isValidElement, JSX, useState} from "react";
 import {renderComponent} from "../../RenderEngine/utils/ComponentRender";
 import styles from "./DynamicUI.module.css";
+import cx from "classnames";
 
 interface DynamicUIProps {
 	screenConfig: {
-		screen: Record<string, any>[]
+		page: {
+			content: Record<string, any>[]
+		} & Record<string, any>;
 	} | JSX.Element;
 }
 
@@ -22,14 +25,6 @@ const DynamicUI = ({screenConfig}: DynamicUIProps) => {
 		}))
 	}
 
-	const isJsonObject = (value: any): value is Record<string, any> => {
-		return (
-			typeof value === "object" &&
-			value !== null &&
-			!Array.isArray(value)
-		);
-	};
-
 	const isJSXElement = (value: any): value is JSX.Element => {
 		return (isValidElement(value)); // Returns true if it's NOT a JSX element
 	};
@@ -41,12 +36,17 @@ const DynamicUI = ({screenConfig}: DynamicUIProps) => {
 	}
 
 	return (
-		<div className={styles.main}>
-			{!isJSXElement(screenConfig) ? screenConfig?.screen?.map((component: any, index: number) =>
-				renderComponent(component, index, handleChange, () => handleSubmit(`card_${index}`), `card_${index}`),
-			) : screenConfig}
+		<>
+			{!isJSXElement(screenConfig) ? (
+				<div className={cx(styles.main, styles[`${screenConfig?.page.layout}`])}>
+					{ screenConfig?.page.content?.map((component: any, index: number) =>
+						renderComponent(component, index, handleChange, () => handleSubmit(`card_${index}`), `card_${index}`),
+					)}
 
-		</div>
+				</div>
+			) : screenConfig}
+		</>
+
 	)
 }
 

@@ -2,10 +2,10 @@ import type React from "react";
 import Card from "../../../components/Card/Card";
 import {renderComponent} from "../../utils/ComponentRender";
 import ComponentProps from "../ComponentProps";
-import styles from "./CardComponent.module.css";
+import styles from "./CardWrapper.module.css";
 import cx from "classnames";
 
-const CardComponent = ({title, layout = "column", content, onChange, onSubmit, parentId}: ComponentProps) => (
+const CardWrapper = ({title, layout = "column", content, onChange, onSubmit, parentId}: ComponentProps) => (
 	<Card className={styles.card}>
 		{title && <h2 className={styles.title}>{title}</h2>}
 		<div className={cx({[styles["card-row"]]: layout === "row", [styles["card-col"]]: layout === "column"})}>
@@ -14,4 +14,4 @@ const CardComponent = ({title, layout = "column", content, onChange, onSubmit, p
 	</Card>
 )
 
-export default CardComponent;
+export default CardWrapper;

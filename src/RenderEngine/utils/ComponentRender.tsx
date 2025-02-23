@@ -1,8 +1,7 @@
 import type React from "react"
-import Card from "../../components/Card/Card";
 import TextField from "../../components/TextField/TextField";
 import Button from "../../components/Button/Button";
-import CardComponent from "../components/CardComponent/CardComponent";
+import CardWrapper from "../components/CardWrapper/CardWrapper";
 
 interface ComponentProps {
 	[key: string]: any
@@ -28,7 +27,7 @@ const TextFieldComponent: React.FC<ComponentProps> = ({ id, title, placeholder, 
 
 const ButtonComponent: React.FC<ComponentProps> = ({ title, actionUrl, position, onSubmit }) => (
 	<div className={`flex ${position === "center" ? "justify-center" : ""}`}>
-		<Button onClick={() => onSubmit && onSubmit()}>{title}</Button>
+		<Button onClick={() => onSubmit && onSubmit()}>{title}, {actionUrl}</Button>
 	</div>
 )
 
@@ -38,15 +37,6 @@ const Stack: React.FC<ComponentProps> = ({ title, layout, content, onChange, onS
 		{content.map((item: any, index: number) => renderComponent(item, index, onChange, onSubmit, parentId))}
 	</div>
 )
-
-// const CardComponent: React.FC<ComponentProps> = ({ title, layout, content, onChange, onSubmit, parentId }) => (
-// 	<Card className="p-6 space-y-4">
-// 		{title && <h2 className="text-xl font-bold">{title}</h2>}
-// 		<div className={`${layout === "row" ? "flex flex-row gap-4" : "flex flex-col space-y-4"}`}>
-// 			{content.map((item: any, index: number) => renderComponent(item, index, onChange, onSubmit, parentId))}
-// 		</div>
-// 	</Card>
-// )
 
 export const renderComponent = (
 	component: any,
@@ -66,7 +56,7 @@ export const renderComponent = (
 		case "stack":
 			return <Stack key={key} {...props} onChange={onChange} onSubmit={onSubmit} parentId={parentId} />
 		case "card":
-			return <CardComponent key={key} {...props} onChange={onChange} onSubmit={onSubmit} parentId={`card_${key}`} />
+			return <CardWrapper key={key} {...props} onChange={onChange} onSubmit={onSubmit} parentId={`card_${key}`} />
 		default:
 			return null
 	}
